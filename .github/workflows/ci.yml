@@ -1,0 +1,37 @@
+name: Skin Package & Script Integrity CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: Integrity & Syntax Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Verify .rmskin Package SHA256 Integrity
+        run: |
+          echo "8580f5ffcd3283c528eaf2159fd5a9e4d8f0704c99bc6afa09efcf9883a520e6  Rainmeter-ToDo-List-Pro-v1.0.0.rmskin" | sha256sum -c -
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON Configuration Syntax
+        run: |
+          python -c "import json; json.load(open('config/tasks.json', 'r', encoding='utf-8'))"
+
+      - name: Validate Lua Script Syntax
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lua5.3
+          luac5.3 -p "@Resources/json.lua" "@Resources/MeasureDynamicTasks.lua"
