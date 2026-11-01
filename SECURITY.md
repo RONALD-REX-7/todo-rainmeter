@@ -17,3 +17,4 @@ If you discover a security vulnerability in this Rainmeter skin (such as path tr
 3. **Include Details**: Provide a description of the issue, affected script or INI meter, reproduction steps, and potential execution risk.
 
 Reports will be reviewed and addressed promptly.
+
