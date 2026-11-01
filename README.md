@@ -1,15 +1,14 @@
-
 <p align="center">
   <img src="logo.png" alt="Rainmeter To-Do List" width="50%" />
 </p>
 <h1 align="center">Rainmeter To-Do List</h1>
-
 
 <p align="center">
   <img src="https://img.shields.io/badge/Rainmeter-Skin-blue?style=for-the-badge&logo=windows" alt="Rainmeter Skin" />
   <img src="https://img.shields.io/badge/Language-Lua%20%7C%20Rainmeter%20INI-orange?style=for-the-badge" alt="Languages" />
   <img src="https://img.shields.io/badge/Icons-FontAwesome-cyan?style=for-the-badge" alt="FontAwesome" />
   <img src="https://img.shields.io/badge/Design-Minimalist%20Glassmorphism-purple?style=for-the-badge" alt="Design" />
+  <img src="https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=for-the-badge" alt="GPL-3.0 License" />
 </p>
 
 A modern, ultra-minimalist, and ergonomic **To-Do List** desktop skin for **[Rainmeter](https://www.rainmeter.net/)**. Designed with clean desktop aesthetics, automatic mathematical proportional scaling, configurable organic animations, a native Windows RGB color picker, and a comprehensive settings panel.
@@ -65,14 +64,17 @@ The subtle action column positioned on the right provides quick one-click action
 ## 📥 Installation
 
 ### Option 1: One-Click Skin Installer (Recommended)
-1. Download **`Rainmeter-ToDo-List-Pro-v1.0.0.rmskin`** from the [Latest Release](https://github.com/wenderfl/todo-rainmeter/releases).
-2. Double-click the `.rmskin` file and click **Install**. Rainmeter will automatically install and load the skin on your desktop.
+1. Download **`Rainmeter-ToDo-List-Pro-v1.0.0.rmskin`** from the [Latest Release](https://github.com/RONALD-REX-7/todo-rainmeter/releases).
+2. Verify package integrity:
+   - **File**: `Rainmeter-ToDo-List-Pro-v1.0.0.rmskin`
+   - **SHA256**: `8580F5FFCD3283C528EAF2159FD5A9E4D8F0704C99BC6AFA09EFCF9883A520E6`
+3. Double-click the `.rmskin` file and click **Install**. Rainmeter will automatically install and load the skin on your desktop.
 
 ### Option 2: Manual Git Clone
 1. Ensure **[Rainmeter](https://www.rainmeter.net/)** (version 4.5 or newer) is installed.
 2. Clone this repository directly into your Rainmeter skins directory:
    ```bash
-   git clone https://github.com/wenderfl/todo-rainmeter.git "%USERPROFILE%\Documents\Rainmeter\Skins\rainmeter-todo-list"
+   git clone https://github.com/RONALD-REX-7/todo-rainmeter.git "%USERPROFILE%\Documents\Rainmeter\Skins\rainmeter-todo-list"
    ```
 3. Open the **Rainmeter Manage** window, click **Refresh all**, navigate to `rainmeter-todo-list` > `todo` > `todo.ini` and click **Load**.
 
@@ -98,18 +100,29 @@ rainmeter-todo-list/
 ├── todo/
 │   ├── tasks.json              # Persistent task data storage
 │   └── todo.ini                # Main To-Do widget
+├── ASSET_LICENSES.md           # Third-party font, audio, and script attributions
+├── Rainmeter-ToDo-List-Pro-v1.0.0.rmskin # Standalone installable skin package
+├── LICENSE                     # GNU General Public License v3.0 (GPL-3.0)
 └── README.md                   # Project documentation
 ```
 
 ---
 
-## 👏 Credits & Acknowledgements
+## 👏 Provenance, Credits & Acknowledgements
 
-- This project is inspired by and based on the original work by **[alperenozlu/rainmeter-todo](https://github.com/alperenozlu/rainmeter-todo)**.
-- Thanks to the **Rainmeter** community and the creators of the **FontAwesome** icon suite.
+This project is a maintained derivative desktop utility:
+- **Upstream Foundation**: [alperenozlu/rainmeter-todo](https://github.com/alperenozlu/rainmeter-todo)
+- **Intermediate Fork**: [wenderfl/todo-rainmeter](https://github.com/wenderfl/todo-rainmeter)
+- **Current Maintained Derivative**: [RONALD-REX-7/todo-rainmeter](https://github.com/RONALD-REX-7/todo-rainmeter)
+- **Third-Party Assets**:
+  - `FontAwesome` (SIL Open Font License 1.1)
+  - `Roboto Regular` (Apache License 2.0)
+  - `json.lua` by Jeffrey Friedl (MIT License)
+  - Audio chimes (Royalty-Free / Public Domain)
+  - See [ASSET_LICENSES.md](ASSET_LICENSES.md) for complete details.
 
 ---
 
 ## 📄 License
 
-This project is licensed under the [MIT](LICENSE) License.
+This repository is licensed under the **[GNU General Public License v3.0 (GPL-3.0)](LICENSE)**. See the [LICENSE](LICENSE) file for complete terms and copyleft requirements. Third-party asset licenses are detailed in [ASSET_LICENSES.md](ASSET_LICENSES.md).
