@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 permissions:
   contents: read
 
@@ -13,17 +17,18 @@ jobs:
   verify:
     name: Integrity & Syntax Verification
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Verify .rmskin Package SHA256 Integrity
         run: |
           echo "8580f5ffcd3283c528eaf2159fd5a9e4d8f0704c99bc6afa09efcf9883a520e6  Rainmeter-ToDo-List-Pro-v1.0.0.rmskin" | sha256sum -c -
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: '3.11'
 
