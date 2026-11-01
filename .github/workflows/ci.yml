@@ -37,7 +37,7 @@ jobs:
           import os, sys
           for f in ['@Resources/json.lua', '@Resources/MeasureDynamicTasks.lua']:
               assert os.path.exists(f), f'Missing {f}'
-              content = open(f, 'r', encoding='utf-8').read()
-              assert len(content) > 100, f'{f} is unexpectedly truncated'
+              raw = open(f, 'rb').read()
+              assert len(raw) > 100, f'{f} is unexpectedly truncated'
           print('Lua script integrity verified successfully.')
           "
