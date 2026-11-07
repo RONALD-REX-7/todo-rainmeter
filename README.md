@@ -1,3 +1,13 @@
+<div align="center">
+
+<img src="portfolio-identity.svg" alt="Rainmeter To-Do List — project portfolio banner" width="100%">
+
+[← Back to Ronald Rex's engineering portfolio](https://github.com/RONALD-REX-7)
+
+</div>
+
+---
+
 <p align="center">
   <img src="logo.png" alt="Rainmeter To-Do List" width="50%" />
 </p>
