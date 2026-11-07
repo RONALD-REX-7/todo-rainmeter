@@ -121,6 +121,7 @@ rainmeter-todo-list/
 ## 👏 Provenance, Credits & Acknowledgements
 
 This project is a maintained derivative desktop utility:
+- **Lead Maintainer & Architectural Refinement**: [Ronald Rex](https://github.com/RONALD-REX-7)
 - **Upstream Foundation**: [alperenozlu/rainmeter-todo](https://github.com/alperenozlu/rainmeter-todo)
 - **Intermediate Fork**: [wenderfl/todo-rainmeter](https://github.com/wenderfl/todo-rainmeter)
 - **Current Maintained Derivative**: [RONALD-REX-7/todo-rainmeter](https://github.com/RONALD-REX-7/todo-rainmeter)
