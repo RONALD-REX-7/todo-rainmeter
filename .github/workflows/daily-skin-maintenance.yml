@@ -1,0 +1,78 @@
+name: Daily Package & Script Integrity Maintenance
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at 00:00 UTC (05:30 AM IST)
+  workflow_dispatch: # Allows manual trigger anytime from Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-maintenance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  daily-integrity-check:
+    name: Package & Asset Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verify .rmskin Package SHA256 Integrity
+        id: pkg-check
+        run: |
+          echo "8580f5ffcd3283c528eaf2159fd5a9e4d8f0704c99bc6afa09efcf9883a520e6  Rainmeter-ToDo-List-Pro-v1.0.0.rmskin" | sha256sum -c -
+          echo "pkg_status=Verified" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate JSON & Lua Assets
+        id: asset-check
+        run: |
+          python -c "import json; json.load(open('todo/tasks.json', 'r', encoding='utf-8'))"
+          python -c "
+          import os
+          for f in ['@Resources/json.lua', '@Resources/MeasureDynamicTasks.lua']:
+              assert os.path.exists(f), f'Missing {f}'
+              assert len(open(f, 'rb').read()) > 100, f'{f} truncated'
+          print('Asset checks passed.')
+          "
+          echo "asset_status=100% Valid" >> $GITHUB_OUTPUT
+
+      - name: Update Daily Integrity Ledger
+        run: |
+          DATE_STR=$(date -u +"%Y-%m-%d")
+          TIME_STR=$(date -u +"%H:%M:%S UTC")
+          PKG_ST="${{ steps.pkg-check.outputs.pkg_status }}"
+          ASSET_ST="${{ steps.asset-check.outputs.asset_status }}"
+          
+          echo "| $DATE_STR | $TIME_STR | $PKG_ST | $ASSET_ST | ✅ Healthy |" >> docs/DAILY_SKIN_HEALTH.md
+          echo "Updated docs/DAILY_SKIN_HEALTH.md for $DATE_STR"
+
+      - name: Commit and Push Verified Telemetry
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/DAILY_SKIN_HEALTH.md
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(telemetry): update daily package and script integrity ledger [skip ci]
+
+          Automated daily rmskin checksum verification and Lua asset assertion.
+
+          Co-authored-by: Ronald Rex <211186833+RONALD-REX-7@users.noreply.github.com>"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
